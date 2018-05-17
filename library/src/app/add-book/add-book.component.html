@@ -1,0 +1,53 @@
+<div style="text-align: right;"><button  (click)="close()" mat-raised-button color="primary">Close</button></div>
+<div style="text-align: center;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><h2>New Book</h2></div>
+
+<div class="example-container mat-elevation-z8">
+  
+
+  <div class="example-header">
+
+  </div>
+  <div class="example-header">
+    <mat-form-field class="example-full-width">
+      <input matInput  [(ngModel)]="search">
+
+    </mat-form-field>
+    <button  (click)="getBooks({})" mat-raised-button color="primary">Search</button>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="pages">
+      <mat-header-cell *matHeaderCellDef> Pages </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.pages}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="releasedate">
+      <mat-header-cell *matHeaderCellDef> Release Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.releaseDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="authors">
+      <mat-header-cell *matHeaderCellDef> Authors </mat-header-cell>
+      <mat-cell *matCellDef="let element">  {{element.author}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Add </mat-header-cell>
+      <mat-cell *matCellDef="let element">     <button mat-raised-button (click)="addBook(element)" color="warn">Add</button> </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
